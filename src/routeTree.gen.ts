@@ -12,9 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DeRouteImport } from './routes/de'
 import { Route as EsRouteImport } from './routes/es'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FrRouteImport } from './routes/fr'
+import { Route as HotRouteImport } from './routes/hot'
+import { Route as NewRouteImport } from './routes/new'
 import { Route as PtBrRouteImport } from './routes/pt-br'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -31,9 +36,24 @@ const EsRoute = EsRouteImport.update({
   path: '/es',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FrRoute = FrRouteImport.update({
   id: '/fr',
   path: '/fr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HotRoute = HotRouteImport.update({
+  id: '/hot',
+  path: '/hot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewRoute = NewRouteImport.update({
+  id: '/new',
+  path: '/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PtBrRoute = PtBrRouteImport.update({
@@ -46,47 +66,111 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/de': typeof DeRoute
   '/es': typeof EsRoute
+  '/faq': typeof FaqRoute
   '/fr': typeof FrRoute
+  '/hot': typeof HotRoute
+  '/new': typeof NewRoute
   '/pt-br': typeof PtBrRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/de': typeof DeRoute
   '/es': typeof EsRoute
+  '/faq': typeof FaqRoute
   '/fr': typeof FrRoute
+  '/hot': typeof HotRoute
+  '/new': typeof NewRoute
   '/pt-br': typeof PtBrRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/de': typeof DeRoute
   '/es': typeof EsRoute
+  '/faq': typeof FaqRoute
   '/fr': typeof FrRoute
+  '/hot': typeof HotRoute
+  '/new': typeof NewRoute
   '/pt-br': typeof PtBrRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/de' | '/es' | '/fr' | '/pt-br' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/de'
+    | '/es'
+    | '/faq'
+    | '/fr'
+    | '/hot'
+    | '/new'
+    | '/pt-br'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/de' | '/es' | '/fr' | '/pt-br' | '/sitemap.xml'
-  id: '__root__' | '/' | '/de' | '/es' | '/fr' | '/pt-br' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/de'
+    | '/es'
+    | '/faq'
+    | '/fr'
+    | '/hot'
+    | '/new'
+    | '/pt-br'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/de'
+    | '/es'
+    | '/faq'
+    | '/fr'
+    | '/hot'
+    | '/new'
+    | '/pt-br'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DeRoute: typeof DeRoute
   EsRoute: typeof EsRoute
+  FaqRoute: typeof FaqRoute
   FrRoute: typeof FrRoute
+  HotRoute: typeof HotRoute
+  NewRoute: typeof NewRoute
   PtBrRoute: typeof PtBrRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -112,11 +196,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fr': {
       id: '/fr'
       path: '/fr'
       fullPath: '/fr'
       preLoaderRoute: typeof FrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hot': {
+      id: '/hot'
+      path: '/hot'
+      fullPath: '/hot'
+      preLoaderRoute: typeof HotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new': {
+      id: '/new'
+      path: '/new'
+      fullPath: '/new'
+      preLoaderRoute: typeof NewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pt-br': {
@@ -133,6 +238,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -140,9 +259,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DeRoute: DeRoute,
   EsRoute: EsRoute,
+  FaqRoute: FaqRoute,
   FrRoute: FrRoute,
+  HotRoute: HotRoute,
+  NewRoute: NewRoute,
   PtBrRoute: PtBrRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
