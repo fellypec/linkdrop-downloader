@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { T, type Lang } from "@/lib/i18n";
+import { FAQS } from "@/lib/content";
 
 export function HomePage({ lang }: { lang: Lang }) {
   const t = T[lang];
@@ -69,6 +70,18 @@ export function HomePage({ lang }: { lang: Lang }) {
               <h3 className="text-lg font-semibold text-primary">{title}</h3>
               <p className="mt-2 text-muted-foreground">{text}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-x max-w-3xl pb-24">
+        <h2 className="section-title">FAQ</h2>
+        <div className="mt-10 space-y-3">
+          {FAQS.map(([q, a]) => (
+            <details key={q} className="faq-item">
+              <summary>{q}</summary>
+              <p className="mt-3 text-muted-foreground">{a}</p>
+            </details>
           ))}
         </div>
       </section>
